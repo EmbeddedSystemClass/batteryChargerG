@@ -57,7 +57,6 @@ RTC_HandleTypeDef hrtc;
 SD_HandleTypeDef hsd;
 HAL_SD_CardInfoTypedef SDCardInfo;
 
-TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim6;
 
 UART_HandleTypeDef huart3;
@@ -99,7 +98,6 @@ static void MX_FSMC_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_RTC_Init(void);
 static void MX_SDIO_SD_Init(void);
-static void MX_TIM2_Init(void);
 static void MX_TIM6_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_USB_OTG_FS_USB_Init(void);
@@ -157,7 +155,6 @@ int main(void)
   MX_I2C1_Init();
   MX_RTC_Init();
   MX_SDIO_SD_Init();
-  MX_TIM2_Init();
   MX_TIM6_Init();
   MX_USART3_UART_Init();
   MX_USB_OTG_FS_USB_Init();
@@ -167,13 +164,6 @@ int main(void)
 
 	/*##-2- Enable TIM peripheral counter ######################################*/
 	HAL_TIM_Base_Start(&htim6);
-
-	/*##-2- Start the TIM Base generation in interrupt mode ####################*/
-	/* Start Channel1 */
-	if (HAL_TIM_Base_Start_IT(&htim2) != HAL_OK) {
-		/* Starting Error */
-		Error_Handler();
-	}
 
 	/*##-3- Start the conversion process and enable interrupt ##################*/
 	if (HAL_ADC_Start_DMA(&hadc3, (uint32_t*) &uhADCxConvertedValue,
@@ -307,7 +297,7 @@ void MX_ADC3_Init(void)
     */
   sConfig.Channel = ADC_CHANNEL_8;
   sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  sConfig.SamplingTime = ADC_SAMPLETIME_56CYCLES;
   HAL_ADC_ConfigChannel(&hadc3, &sConfig);
 
 }
@@ -429,29 +419,6 @@ void MX_SDIO_SD_Init(void)
 
 }
 
-/* TIM2 init function */
-void MX_TIM2_Init(void)
-{
-
-  TIM_ClockConfigTypeDef sClockSourceConfig;
-  TIM_MasterConfigTypeDef sMasterConfig;
-
-  htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 0;
-  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 25000000;
-  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  HAL_TIM_Base_Init(&htim2);
-
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig);
-
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_ENABLE;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig);
-
-}
-
 /* TIM6 init function */
 void MX_TIM6_Init(void)
 {
@@ -461,7 +428,7 @@ void MX_TIM6_Init(void)
   htim6.Instance = TIM6;
   htim6.Init.Prescaler = 0;
   htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim6.Init.Period = 0x7FF;
+  htim6.Init.Period = 0xFFF;
   HAL_TIM_Base_Init(&htim6);
 
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
