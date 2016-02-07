@@ -305,7 +305,7 @@ void MX_ADC3_Init(void)
 
     /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
     */
-  sConfig.Channel = ADC_CHANNEL_7;
+  sConfig.Channel = ADC_CHANNEL_8;
   sConfig.Rank = 1;
   sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
   HAL_ADC_ConfigChannel(&hadc3, &sConfig);
@@ -643,13 +643,13 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(VBUS_FS_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : MCO_Pin */
-  GPIO_InitStruct.Pin = MCO_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF0_MCO;
-  HAL_GPIO_Init(MCO_GPIO_Port, &GPIO_InitStruct);
+//  /*Configure GPIO pin : MCO_Pin */
+//  GPIO_InitStruct.Pin = MCO_Pin;
+//  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+//  GPIO_InitStruct.Pull = GPIO_NOPULL;
+//  GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
+//  GPIO_InitStruct.Alternate = GPIO_AF0_MCO;
+//  HAL_GPIO_Init(MCO_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LED4_Pin */
   GPIO_InitStruct.Pin = LED4_Pin;
