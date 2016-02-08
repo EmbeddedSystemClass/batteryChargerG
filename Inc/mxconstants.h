@@ -236,16 +236,8 @@
 #define D14_GPIO_Port GPIOD
 #define D13_Pin GPIO_PIN_8
 #define D13_GPIO_Port GPIOD
-#define ULPI_D0_Pin GPIO_PIN_3
-#define ULPI_D0_GPIO_Port GPIOA
 #define MII_RX_DV_RMII_CRSDV_Pin GPIO_PIN_7
 #define MII_RX_DV_RMII_CRSDV_GPIO_Port GPIOA
-#define ULPI_D2_Pin GPIO_PIN_1
-#define ULPI_D2_GPIO_Port GPIOB
-#define ULPI_D1_Pin GPIO_PIN_0
-#define ULPI_D1_GPIO_Port GPIOB
-#define OTG_FS_OverCurrent_Pin GPIO_PIN_11
-#define OTG_FS_OverCurrent_GPIO_Port GPIOF
 #define A8_Pin GPIO_PIN_14
 #define A8_GPIO_Port GPIOF
 #define D4_Pin GPIO_PIN_7
