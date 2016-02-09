@@ -47,7 +47,7 @@ typedef struct
 } VoltageStruct;
 
 /* Exported constants --------------------------------------------------------*/
-#define VOLTAGE_BUFFER_LENGTH 500
+#define VOLTAGE_BUFFER_LENGTH 512
 #define SINGLE_PACKET_LENGTH 4
 #define PACKETS_PER_FRAME 300
 #define ETHERNET_BUFFER_LENGTH SINGLE_PACKET_LENGTH * PACKETS_PER_FRAME
